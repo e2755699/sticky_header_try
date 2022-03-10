@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_sticky_header/flutter_sticky_header.dart';
 import 'package:sticky_headers/sticky_headers/widget.dart';
+import 'package:untitled/widget/custom_sticky_header.dart';
 
 void main() {
   runApp(const MyApp());
@@ -77,45 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: CustomScrollView(
-        slivers: [
-          // SliverStickyHeader(
-          //   header: Container(
-          //     height: 60.0,
-          //     color: Colors.lightBlue,
-          //     padding: EdgeInsets.symmetric(horizontal: 16.0),
-          //     alignment: Alignment.centerLeft,
-          //     child: Text(
-          //       'Header #0',
-          //       style: const TextStyle(color: Colors.white),
-          //     ),
-          //   ),
-          //   sliver: SliverList(
-          //     delegate: SliverChildBuilderDelegate(
-          //           (context, i) => ListTile(
-          //         leading: CircleAvatar(
-          //           child: Text('0'),
-          //         ),
-          //         title: Text('List tile #$i'),
-          //       ),
-          //       childCount: 4,
-          //     ),
-          //   ),
-          // )
-          SliverStickyHeader(
-            header: Container(
-              height: 100,
-              color: Colors.red,
-            ),
-            sliver: SliverList(
-              delegate: SliverChildBuilderDelegate(
-                  (context, index) =>
-                     !_isShow && index == 1 ? Container() : Container(height: 1000, color: buildGreen(index)),
-                  childCount: 2),
-            ),
-          ),
-        ],
-      ),
+      body: CustomStickyHeader(_isShow),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
@@ -124,5 +87,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Color buildGreen(int i) => i != 0 ? Colors.green : Colors.black;
+
 }
